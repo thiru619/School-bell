@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../data/models/message_model.dart';
 import 'package:uuid/uuid.dart';
 
 class ChatController extends GetxController {
+  final TextEditingController inputController = TextEditingController();
   final currentUserId = 'user_1';
   final currentUserName = 'You';
 
@@ -12,9 +14,27 @@ class ChatController extends GetxController {
   ChatController() {
     // Seed with sample conversations
     messages.addAll([
-      Message(id: Uuid().v4(), senderId: 'user_2', senderName: 'Teacher A', text: 'Hello class!', time: DateTime.now().subtract(Duration(minutes: 5))),
-      Message(id: Uuid().v4(), senderId: 'user_1', senderName: 'You', text: 'Hi Teacher!', time: DateTime.now().subtract(Duration(minutes: 4))),
-      Message(id: Uuid().v4(), senderId: 'user_2', senderName: 'Teacher A', text: 'Please check today\'s homework.', time: DateTime.now().subtract(Duration(minutes: 2))),
+      Message(
+        id: Uuid().v4(),
+        senderId: 'user_2',
+        senderName: 'Teacher A',
+        text: 'Hello class!',
+        time: DateTime.now().subtract(Duration(minutes: 5)),
+      ),
+      Message(
+        id: Uuid().v4(),
+        senderId: 'user_1',
+        senderName: 'You',
+        text: 'Hi Teacher!',
+        time: DateTime.now().subtract(Duration(minutes: 4)),
+      ),
+      Message(
+        id: Uuid().v4(),
+        senderId: 'user_2',
+        senderName: 'Teacher A',
+        text: 'Please check today\'s homework.',
+        time: DateTime.now().subtract(Duration(minutes: 2)),
+      ),
     ]);
 
     // Default chat user

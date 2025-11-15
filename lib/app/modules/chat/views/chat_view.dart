@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utils/responsive_helper.dart';
+import '../../../widgets/custom_textfield.dart';
 import '../controllers/chat_controller.dart';
 import '../widgets/message_bubble.dart';
 
 class ChatView extends StatelessWidget {
-  final ChatController controller = Get.find<ChatController>();
-  final TextEditingController inputController = TextEditingController();
-
   ChatView({Key? key}) : super(key: key);
 
   final sampleUsers = [
@@ -21,12 +19,37 @@ class ChatView extends StatelessWidget {
     final bool tablet = ResponsiveHelper.isTablet(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Chat')),
-      body: tablet ? buildTabletLayout(context) : buildMobileLayout(context),
+      appBar: AppBar(
+        leading: Icon(Icons.person_pin),
+        elevation: 0,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () => Get.toNamed('/menu'),
+              child: Icon(Icons.auto_awesome_mosaic_rounded),
+            ),
+          ),
+        ],
+      ),
+      body: GetBuilder<ChatController>(
+        builder: (controller) => Padding(
+          padding: const EdgeInsets.all(15),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: Colors.grey),
+            ),
+            child: tablet
+                ? buildTabletLayout(context, controller)
+                : buildMobileLayout(context, controller),
+          ),
+        ),
+      ),
     );
   }
 
-  Widget buildTabletLayout(BuildContext context) {
+  Widget buildTabletLayout(BuildContext context, controller) {
     return Row(
       children: [
         Container(
@@ -77,7 +100,7 @@ class ChatView extends StatelessWidget {
                     ),
                   ),
                 ),
-                buildInputArea(),
+                buildInputArea(controller),
               ],
             );
           }),
@@ -86,7 +109,7 @@ class ChatView extends StatelessWidget {
     );
   }
 
-  Widget buildMobileLayout(BuildContext context) {
+  Widget buildMobileLayout(BuildContext context, controller) {
     return Column(
       children: [
         Expanded(
@@ -104,47 +127,26 @@ class ChatView extends StatelessWidget {
             );
           }),
         ),
-        buildInputArea(),
+        buildInputArea(controller),
       ],
     );
   }
 
-  Widget buildInputArea() {
-    return SafeArea(
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-        child: Row(
-          children: [
-            Expanded(
-              child: TextField(
-                controller: inputController,
-                decoration: InputDecoration(
-                  hintText: 'Type a message...',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 10,
-                  ),
-                ),
-                onSubmitted: (v) {
-                  controller.sendMessage(v);
-                  inputController.clear();
-                },
-              ),
-            ),
-            SizedBox(width: 8),
-            IconButton(
-              icon: Icon(Icons.send),
-              onPressed: () {
-                controller.sendMessage(inputController.text);
-                inputController.clear();
-              },
-            ),
-          ],
+  Widget buildInputArea(controller) {
+    return Row(
+      children: [
+        Expanded(
+          child: chatInputField(
+            controller: controller.inputController,
+            onSend: () {
+              controller.sendMessage(controller.inputController.text);
+              controller.inputController.clear();
+            },
+            onMic: () {},
+            onAttachment: () {},
+          ),
         ),
-      ),
+      ],
     );
   }
 }

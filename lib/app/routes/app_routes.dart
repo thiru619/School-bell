@@ -3,4 +3,5 @@ abstract class Routes {
   static const chat = '/chat';
   static const profile = '/profile';
   static const signIn = '/sign-in';
+  static const menu = '/menu';
 }

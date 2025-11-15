@@ -32,17 +32,16 @@ class MessageBubble extends StatelessWidget {
             SizedBox(height: 4),
             CustomText(
               text: message.text,
+              color: isMine ? Colors.white : Colors.black87,
               style: TextStyle(color: isMine ? Colors.white : Colors.black87),
             ),
             SizedBox(height: 6),
             Align(
               alignment: Alignment.bottomRight,
               child: CustomText(
+                color: isMine ? Colors.white70 : Colors.black45,
                 text: _formatTime(message.time),
-                style: TextStyle(
-                  fontSize: 10,
-                  color: isMine ? Colors.white70 : Colors.black45,
-                ),
+                style: TextStyle(fontSize: 10),
               ),
             ),
           ],
