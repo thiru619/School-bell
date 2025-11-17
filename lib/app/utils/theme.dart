@@ -24,4 +24,7 @@ class AppTheme {
   );
 
   static Color get violet => Colors.purple;
+  static Color get white => Colors.white;
+
+  static Color get black => Colors.black;
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:school_bell/app/modules/sign_in/controllers/sign_in_controller.dart';
 import '../../../routes/app_routes.dart';
+import '../../chat/controllers/chat_controller.dart';
 import '../../../widgets/custom_text.dart';
 import '../../../widgets/custom_textfield.dart';
 
@@ -90,8 +91,8 @@ class SignInView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
-                          onPressed: () {
-                            Get.toNamed(Routes.chat);
+                          onPressed: () async {
+                            Get.offNamed(Routes.chat);
                           },
                           child: CustomText(
                             text: 'Register',

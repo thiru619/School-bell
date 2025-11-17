@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../widgets/custom_text.dart';
+import '../controller/menu_controller.dart';
 
 Widget menuItemWidget({
   String? icon,
@@ -23,7 +27,7 @@ Widget menuItemWidget({
               ),
               borderRadius: BorderRadius.circular(12),
             ),
-            // child: Image.asset(icon),
+            child: Image.asset(icon!),
           ),
           const SizedBox(height: 6),
           Text(

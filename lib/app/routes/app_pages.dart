@@ -15,7 +15,11 @@ class AppPages {
   static const initial = Routes.signIn;
 
   static final routes = [
-    GetPage(name: '/menu', page: () => MenuPageView(), binding: MenuBinding()),
+    GetPage(
+      name: Routes.menu,
+      page: () => MenuPageView(),
+      binding: MenuBinding(),
+    ),
 
     GetPage(
       name: Routes.signIn,
@@ -28,6 +32,7 @@ class AppPages {
       binding: DashboardBinding(),
     ),
     GetPage(name: Routes.chat, page: () => ChatView(), binding: ChatBinding()),
+
     GetPage(
       name: Routes.profile,
       page: () => ProfileView(),

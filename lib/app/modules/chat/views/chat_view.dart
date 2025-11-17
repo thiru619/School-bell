@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../routes/app_routes.dart';
 import '../../../utils/responsive_helper.dart';
 import '../../../widgets/custom_textfield.dart';
 import '../controllers/chat_controller.dart';
@@ -26,30 +27,41 @@ class ChatView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
-              onTap: () => Get.toNamed('/menu'),
+              onTap: () => Get.toNamed(Routes.menu),
               child: Icon(Icons.auto_awesome_mosaic_rounded),
             ),
           ),
         ],
       ),
-      body: GetBuilder<ChatController>(
-        builder: (controller) => Padding(
-          padding: const EdgeInsets.all(15),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.grey),
+      body: Builder(
+        builder: (context) {
+          // Ensure a ChatController instance exists before building the view.
+          late ChatController controller;
+          try {
+            controller = Get.find<ChatController>();
+          } catch (e) {
+            controller = ChatController();
+            Get.put<ChatController>(controller);
+          }
+
+          return Padding(
+            padding: const EdgeInsets.all(15),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: Colors.grey),
+              ),
+              child: tablet
+                  ? buildTabletLayout(context, controller)
+                  : buildMobileLayout(context, controller),
             ),
-            child: tablet
-                ? buildTabletLayout(context, controller)
-                : buildMobileLayout(context, controller),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
 
-  Widget buildTabletLayout(BuildContext context, controller) {
+  Widget buildTabletLayout(BuildContext context, ChatController controller) {
     return Row(
       children: [
         Container(
@@ -109,7 +121,7 @@ class ChatView extends StatelessWidget {
     );
   }
 
-  Widget buildMobileLayout(BuildContext context, controller) {
+  Widget buildMobileLayout(BuildContext context, ChatController controller) {
     return Column(
       children: [
         Expanded(
@@ -132,7 +144,7 @@ class ChatView extends StatelessWidget {
     );
   }
 
-  Widget buildInputArea(controller) {
+  Widget buildInputArea(ChatController controller) {
     return Row(
       children: [
         Expanded(

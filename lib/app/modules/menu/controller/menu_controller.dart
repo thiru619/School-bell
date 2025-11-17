@@ -4,6 +4,8 @@ class MenuPageController extends GetxController {
   // ------------------------------
   // INITIAL MENU SCREEN
   // ------------------------------
+  RxBool timeDuration = true.obs;
+
   RxBool isInitialMenu = true.obs;
 
   RxDouble menuOpacity = 1.0.obs;
