@@ -1,7 +1,30 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
-  static const MaterialColor primarySwatch = Colors.blue;
-  static const Color primary = Colors.blue;
-  static const Color secondary = Colors.green;
+class AppTheme {
+  AppTheme._();
+
+  static final lightTheme = ThemeData(
+    brightness: Brightness.light,
+    primarySwatch: Colors.blue,
+    scaffoldBackgroundColor: Colors.white,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.blue,
+      foregroundColor: Colors.white,
+    ),
+  );
+
+  static final darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    primarySwatch: Colors.blue,
+    scaffoldBackgroundColor: Colors.black,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.black,
+      foregroundColor: Colors.white,
+    ),
+  );
+
+  static Color get violet => Colors.purple;
+  static Color get white => Colors.white;
+
+  static Color get black => Colors.black;
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'app/routes/app_pages.dart';
-import 'app/theme/app_theme.dart';
 import 'app/bindings/initial_binding.dart';
 
 void main() {
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.initial,
       initialBinding: InitialBinding(),
-      theme: AppTheme.lightTheme,
+      // theme: AppTheme.lightTheme,
       getPages: AppPages.routes,
     );
   }

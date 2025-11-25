@@ -4,4 +4,5 @@ abstract class Routes {
   static const profile = '/profile';
   static const signIn = '/sign-in';
   static const menu = '/menu';
+  static const guestLogin = '/guest-login';
 }

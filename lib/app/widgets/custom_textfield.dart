@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 Widget CustomTextField({
   required BuildContext context,
   required TextEditingController controller,
-  required String hint,
+  String? hint,
   bool isPassword = false,
   IconData? prefixIcon,
 }) {

@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import '../../../data/models/message_model.dart';
 import 'package:uuid/uuid.dart';
 
+import '../widgets/profile_popup/profile_popup.dart';
+
 class ChatController extends GetxController {
   final TextEditingController inputController = TextEditingController();
   final currentUserId = 'user_1';
@@ -10,6 +12,11 @@ class ChatController extends GetxController {
 
   var messages = <Message>[].obs;
   var selectedChatUser = Rxn<ChatUser>();
+  @override
+  void dispose() {
+    closeProfilePopup();
+    super.dispose();
+  }
 
   ChatController() {
     // Seed with sample conversations

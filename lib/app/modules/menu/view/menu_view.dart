@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import '../../../theme/app_colors.dart';
 import '../../../utils/images.dart';
 import '../../../widgets/custom_text.dart';
 import '../controller/menu_controller.dart';
@@ -10,7 +10,6 @@ import '../widget/question/views/question_view.dart';
 import '../widget/responsive.dart';
 import '../widget/table_widget.dart';
 import '../widget/menu_item_widget.dart';
-import '../../../utils/theme.dart';
 
 class MenuPageView extends GetView<MenuPageController> {
   const MenuPageView({super.key});
@@ -52,12 +51,11 @@ class MenuPageView extends GetView<MenuPageController> {
         child: Center(
           child: GridView.count(
             shrinkWrap: true,
-            crossAxisCount: 2,
-            // crossAxisCount: Responsive.isMobile(context)
-            //     ? 2
-            //     : Responsive.isTablet(context)
-            //     ? 3
-            //     : 4,
+            crossAxisCount: Responsive.isMobile(context)
+                ? 2
+                : Responsive.isTablet(context)
+                ? 2
+                : 4,
             crossAxisSpacing: 5,
             mainAxisSpacing: 5,
             padding: const EdgeInsets.all(20),

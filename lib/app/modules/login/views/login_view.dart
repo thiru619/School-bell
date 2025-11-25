@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:school_bell/app/modules/sign_in/controllers/sign_in_controller.dart';
 import '../../../routes/app_routes.dart';
-import '../../chat/controllers/chat_controller.dart';
+import '../../../theme/app_colors.dart';
 import '../../../widgets/custom_text.dart';
 import '../../../widgets/custom_textfield.dart';
+import '../controllers/login_controller.dart';
 
-class SignInView extends StatelessWidget {
+class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: GetBuilder<SignInController>(
+      body: GetBuilder<LoginController>(
         builder: (controller) => LayoutBuilder(
           builder: (context, constraints) {
             // For responsiveness
@@ -29,8 +29,10 @@ class SignInView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Image.asset('assets/logo.jpeg', height: 120),
+                      const SizedBox(height: 20),
                       CustomText(
-                        text: 'Sign up',
+                        text: 'LOGIN',
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -41,7 +43,7 @@ class SignInView extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: CustomText(
-                          text: 'Email',
+                          text: 'User ID',
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           color: Colors.black87,
@@ -52,7 +54,7 @@ class SignInView extends StatelessWidget {
                       CustomTextField(
                         context: context,
                         controller: controller.emailController,
-                        hint: 'example@gmail.com',
+                        hint: "Enter your user ID",
                         prefixIcon: Icons.email_outlined,
                       ),
 
@@ -95,7 +97,7 @@ class SignInView extends StatelessWidget {
                             Get.offNamed(Routes.chat);
                           },
                           child: CustomText(
-                            text: 'Register',
+                            text: 'Login',
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
@@ -126,19 +128,15 @@ class SignInView extends StatelessWidget {
                         width: double.infinity,
                         height: 50,
                         child: OutlinedButton.icon(
-                          onPressed: () {},
-                          // icon: Image.asset(
-                          //   'assets/google_logo.png',
-                          //   width: 24,
-                          //   height: 24,
-                          // ),
+                          onPressed: () => Get.toNamed(Routes.guestLogin),
+
                           label: CustomText(
-                            text: 'Register with Google',
+                            text: 'Guest Login',
                             fontSize: 16,
-                            color: Colors.black87,
+                            color: AppTheme.black,
                           ),
                           style: OutlinedButton.styleFrom(
-                            side: const BorderSide(color: Colors.grey),
+                            side: BorderSide(color: AppTheme.violet),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0),
                             ),
@@ -146,26 +144,26 @@ class SignInView extends StatelessWidget {
                         ),
                       ),
 
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 40),
 
                       // Login Redirect
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomText(
-                            text: 'Already have an account? ',
-                            color: Colors.black87,
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: CustomText(
-                              text: 'Login',
-                              color: Colors.purple,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   children: [
+                      //     CustomText(
+                      //       text: 'Already have an account? ',
+                      //       color: Colors.black87,
+                      //     ),
+                      //     GestureDetector(
+                      //       onTap: () {},
+                      //       child: CustomText(
+                      //         text: 'Login',
+                      //         color: Colors.purple,
+                      //         fontWeight: FontWeight.w600,
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                   ),
                 ),

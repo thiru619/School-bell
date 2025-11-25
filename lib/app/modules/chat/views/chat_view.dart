@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:school_bell/app/modules/guest_login/controllers/guest_login_controller.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/responsive_helper.dart';
 import '../../../widgets/custom_textfield.dart';
 import '../controllers/chat_controller.dart';
 import '../widgets/message_bubble.dart';
+import '../widgets/profile_popup/profile_popup.dart';
 
 class ChatView extends StatelessWidget {
   ChatView({Key? key}) : super(key: key);
@@ -21,13 +23,28 @@ class ChatView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.person_pin),
+        leading: InkWell(
+          onTap: () {
+            GuestLoginController guestController =
+                Get.find<GuestLoginController>();
+            if (guestController.userType != "Student") {
+              showProfilePopup(context, teacherProfileUI());
+            } else {
+              showProfilePopup(context, studentProfileUI());
+            }
+          },
+          child: Icon(Icons.person_pin),
+        ),
         elevation: 0,
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
-              onTap: () => Get.toNamed(Routes.menu),
+              onTap: () {
+                // Close profile popup if open before navigating away
+                closeProfilePopup();
+                Get.toNamed(Routes.menu);
+              },
               child: Icon(Icons.auto_awesome_mosaic_rounded),
             ),
           ),

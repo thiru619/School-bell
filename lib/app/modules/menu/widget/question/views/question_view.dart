@@ -128,6 +128,12 @@ void showQuestionPaperPopup(
                       onChanged: (v) => popup.questionFrom.value = v!,
                     ),
                     const Text("General AI"),
+                    Radio(
+                      value: "Both",
+                      groupValue: popup.questionFrom.value,
+                      onChanged: (v) => popup.questionFrom.value = v!,
+                    ),
+                    const Text("Both"),
                   ],
                 ),
               ),
